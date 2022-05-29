@@ -190,7 +190,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 340, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 230, 0, 0),
                   child: ElevatedButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
@@ -201,7 +201,7 @@ class _LoginState extends State<Login> {
                     style: ElevatedButton.styleFrom(
                       primary: fromCssColor('#6AA83F'),
                       onPrimary: Colors.white,
-                      minimumSize: Size(200, 50),
+                      minimumSize: Size(450, 60),
                       side: BorderSide(
                         color: Colors.transparent,
                         width: 1,
@@ -233,7 +233,7 @@ class _LoginState extends State<Login> {
                           'Belum punya akun?',
                           style: GoogleFonts.getFont(
                             'Poppins',
-                            color: Colors.black45,
+                            color: Colors.black,
                             fontWeight: FontWeight.w500,
                             fontSize: 14,
                           ),
@@ -260,6 +260,42 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                     ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 6, 0, 6),
+                  child: Text(
+                    'OR',
+                    style: GoogleFonts.getFont(
+                      'Poppins',
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                  child: ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: Image.asset('icons/icon_google.png'),
+                    label: Text("Sign In with Google"),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      onPrimary: Colors.black,
+                      minimumSize: Size(450, 60),
+                      side: BorderSide(
+                        color: Colors.transparent,
+                        width: 1,
+                      ),
+                      textStyle: GoogleFonts.getFont(
+                        'Poppins',
+                        // color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(8.0),
+                      ),
+                      elevation: 3,
+                    ),
                   ),
                 ),
               ],
