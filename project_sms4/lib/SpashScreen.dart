@@ -42,7 +42,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                       child: Image.asset(
-                        'assets/images/image 3.png',
+                        'assets/images/image_3.png',
                         width: 350,
                         height: double.infinity,
                         fit: BoxFit.fitHeight,
