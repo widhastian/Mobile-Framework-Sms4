@@ -1,3 +1,5 @@
+import 'package:project_sms4/page/profile_page.dart';
+
 import 'Home.dart';
 import 'Register.dart';
 import 'SpashScreen.dart';

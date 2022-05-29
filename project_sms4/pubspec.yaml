@@ -38,6 +38,7 @@ dependencies:
   from_css_color: ^2.0.0
   auth: ^8.0.0
   splashscreen: ^1.2.0
+  animated_theme_switcher: ^2.0.1-nullsafety.0
 
 dev_dependencies:
   flutter_test:
