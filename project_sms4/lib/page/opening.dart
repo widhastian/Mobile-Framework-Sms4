@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'Login.dart';
-import 'Register.dart';
+import 'login_page.dart';
+import 'register_page.dart';
 import 'package:from_css_color/from_css_color.dart';
 
 class SplashScreenWidget extends StatefulWidget {

@@ -1,8 +1,8 @@
 import 'package:project_sms4/page/profile_page.dart';
 
-import 'Home.dart';
-import 'Register.dart';
-import 'SpashScreen.dart';
+import '../Home.dart';
+import 'register_page.dart';
+import 'opening.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:from_css_color/from_css_color.dart';

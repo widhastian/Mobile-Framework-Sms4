@@ -1,11 +1,12 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:project_sms4/SpashScreen.dart';
+import 'package:project_sms4/page/opening.dart';
 import 'package:project_sms4/page/profile_page.dart';
 import 'package:project_sms4/themes.dart';
 import 'package:project_sms4/utils/user_preferences.dart';
-import 'package:splashscreen/splashscreen.dart';
+import 'Home.dart';
+// import 'package:splashscreen/splashscreen.dart';
 
 // void main() {
 //   runApp(MaterialApp(
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           // theme: ThemeProvider(),
           title: title,
-          home: SplashScreenWidget(),
+          home: Home(),
         ),
       ),
     );

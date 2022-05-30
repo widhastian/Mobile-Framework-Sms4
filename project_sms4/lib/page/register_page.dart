@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:from_css_color/from_css_color.dart';
 import 'package:project_sms4/Home.dart';
-import 'package:project_sms4/Login.dart';
-import 'package:project_sms4/SpashScreen.dart';
+import 'package:project_sms4/page/login_page.dart';
+import 'package:project_sms4/page/opening.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -336,10 +336,8 @@ class _RegisterState extends State<Register> {
                   child: ElevatedButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Home()));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Home()));
                       }
                     },
                     style: ElevatedButton.styleFrom(
