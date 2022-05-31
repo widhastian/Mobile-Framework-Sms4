@@ -56,7 +56,7 @@ class _LoginState extends State<Login> {
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                     child: Text(
-                      'Selamat Data Kembali di CFarmer!',
+                      'Selamat Datang Kembali di GoFarm!',
                       textAlign: TextAlign.start,
                       style: GoogleFonts.getFont(
                         'Poppins',

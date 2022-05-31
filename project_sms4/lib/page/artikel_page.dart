@@ -10,11 +10,6 @@ class Artikel extends StatefulWidget {
 class _ArtikelState extends State<Artikel> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Artikel')),
-      body: Center(
-        child: Text('Artikel Screen', style: TextStyle(fontSize: 40)),
-      ),
-    );
+    return Scaffold();
   }
 }

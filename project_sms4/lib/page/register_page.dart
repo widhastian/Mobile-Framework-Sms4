@@ -55,7 +55,7 @@ class _RegisterState extends State<Register> {
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                     child: Text(
-                      'Selamat Datang di CFarmer!',
+                      'Selamat Datang di GoFarm!',
                       textAlign: TextAlign.start,
                       style: GoogleFonts.getFont(
                         'Poppins',
@@ -101,7 +101,7 @@ class _RegisterState extends State<Register> {
                       filled: true,
                       fillColor: Colors.white,
                       prefixIcon: Icon(
-                        Icons.account_circle,
+                        Icons.person,
                         color: fromCssColor('#6AA83F'),
                       ),
                     ),
@@ -148,60 +148,13 @@ class _RegisterState extends State<Register> {
                       filled: true,
                       fillColor: Colors.white,
                       prefixIcon: Icon(
-                        Icons.add_call,
+                        Icons.call,
                         color: fromCssColor('#6AA83F'),
                       ),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'nomor hp tidak boleh kosong';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    decoration: new InputDecoration(
-                      hintText: "pilih kategori",
-                      hintStyle: GoogleFonts.getFont(
-                        'Poppins',
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 12,
-                      ),
-                      labelText: "Kategori",
-                      labelStyle: GoogleFonts.getFont(
-                        'Poppins',
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 14,
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: fromCssColor('#6AA83F'),
-                          width: 1,
-                        ),
-                        borderRadius: new BorderRadius.circular(8.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: fromCssColor('#6AA83F'),
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      prefixIcon: Icon(
-                        Icons.list_rounded,
-                        color: fromCssColor('#6AA83F'),
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'kategori tidak boleh kosong';
                       }
                       return null;
                     },
