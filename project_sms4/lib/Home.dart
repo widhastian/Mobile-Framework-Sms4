@@ -4,7 +4,7 @@ import 'package:from_css_color/from_css_color.dart';
 import 'package:project_sms4/page/artikel_page.dart';
 import 'package:project_sms4/page/dashboard_page.dart';
 import 'package:project_sms4/page/profile_page.dart';
-import 'package:project_sms4/widget/button_widget.dart';
+import 'package:project_sms4/page/chat_page.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int currentTab = 0;
-  final List<Widget> screens = [Dashboard(), Artikel(), ProfilePage()];
+  final List<Widget> screens = [Dashboard(), Artikel(), Chat(), ProfilePage()];
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +42,10 @@ class _HomeState extends State<Home> {
             label: 'Artikel',
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.chat_rounded),
+            label: 'Pesan',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Profile',
           ),
@@ -49,9 +53,4 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-
-  Widget buildUpgradeButton() => ButtonWidget(
-        text: 'Upgrade To PRO',
-        onClicked: () {},
-      );
 }

@@ -1,19 +1,12 @@
+import 'dart:async';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:from_css_color/from_css_color.dart';
 import 'package:project_sms4/page/login_page.dart';
-import 'package:project_sms4/page/opening.dart';
-import 'package:project_sms4/page/profile_page.dart';
 import 'package:project_sms4/themes.dart';
 import 'package:project_sms4/utils/user_preferences.dart';
 import 'Home.dart';
-// import 'package:splashscreen/splashscreen.dart';
-
-// void main() {
-//   runApp(MaterialApp(
-//     home: SplashScreenWidget(),
-//   ));
-// }
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,10 +32,36 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           // theme: ThemeProvider(),
           title: title,
-          home: Home(),
+          home: splashscreen(),
           // home: Login(),
         ),
       ),
+    );
+  }
+}
+
+class splashscreen extends StatefulWidget {
+  // const splashscreen({ Key? key }) : super(key: key);
+
+  @override
+  _splashscreenState createState() => _splashscreenState();
+}
+
+class _splashscreenState extends State<splashscreen> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(
+        Duration(seconds: 3),
+        () => Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => Login())));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: fromCssColor('#FFFADB'),
+      child: Image.asset('logo/logo_2.png'),
     );
   }
 }
