@@ -196,7 +196,7 @@ class _LoginState extends State<Login> {
                   child: ElevatedButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        Navigator.push(context,
+                        Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (context) => Home()));
                       }
                     },

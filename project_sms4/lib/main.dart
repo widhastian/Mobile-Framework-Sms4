@@ -1,6 +1,7 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:project_sms4/page/login_page.dart';
 import 'package:project_sms4/page/opening.dart';
 import 'package:project_sms4/page/profile_page.dart';
 import 'package:project_sms4/themes.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
           // theme: ThemeProvider(),
           title: title,
           home: Home(),
+          // home: Login(),
         ),
       ),
     );
