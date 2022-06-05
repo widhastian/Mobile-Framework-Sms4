@@ -32,29 +32,10 @@ class _LoginState extends State<Login> {
             padding: EdgeInsets.all(20.0),
             child: Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Container(
-                    alignment: Alignment.topLeft,
-                    color: Colors.transparent,
-                    child: IconButton(
-                      icon: Icon(Icons.arrow_back_ios_new_rounded),
-                      iconSize: 25,
-                      color: Colors.black,
-                      splashColor: fromCssColor('#6AA83F'),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SplashScreenWidget()));
-                      },
-                    ),
-                  ),
-                ),
                 Align(
                   alignment: AlignmentDirectional(-0.35, 0),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
                     child: Text(
                       'Selamat Datang Kembali di GoFarm!',
                       textAlign: TextAlign.start,
