@@ -38,6 +38,7 @@ dependencies:
   from_css_color: ^2.0.0
   auth: ^8.0.0
   splashscreen: 
+  http: ^0.13.4
   # animated_theme_switcher: ^2.0.1-nullsafety.0
   animated_theme_switcher: "^2.0.5"
 
@@ -83,9 +84,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   # fonts:
-  #   - family: Schyler
+  #   - family: MyFlutterApp
   #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: assets/fonts/MyFlutterApp.tff
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

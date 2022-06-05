@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           // theme: ThemeProvider(),
           title: title,
+          // home: Home(),
           home: splashscreen(),
           // home: Login(),
         ),

@@ -30,6 +30,8 @@ class _HomeState extends State<Home> {
         selectedItemColor: fromCssColor('#6AA83F'),
         unselectedItemColor: Colors.black,
         showUnselectedLabels: false,
+        selectedFontSize: 12,
+        unselectedFontSize: 20,
         currentIndex: currentTab,
         onTap: (index) => setState(() => currentTab = index),
         items: [
