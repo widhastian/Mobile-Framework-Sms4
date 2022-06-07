@@ -6,6 +6,7 @@ import 'package:from_css_color/from_css_color.dart';
 import 'package:project_sms4/page/login_page.dart';
 import 'package:project_sms4/themes.dart';
 import 'package:project_sms4/utils/user_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Home.dart';
 
 Future main() async {
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
           // theme: ThemeProvider(),
           title: title,
           // home: Home(),
-          home: splashscreen(),
+          // home: splashscreen(),
+          home: CheckAuth(),
           // home: Login(),
         ),
       ),
@@ -66,3 +68,43 @@ class _splashscreenState extends State<splashscreen> {
     );
   }
 }
+
+class CheckAuth extends StatefulWidget {
+  const CheckAuth({Key? key}) : super(key: key);
+
+  @override
+  State<CheckAuth> createState() => _CheckAuthState();
+}
+
+class _CheckAuthState extends State<CheckAuth> {
+  bool isAuth = false;
+  @override
+  void initState() {
+    _checkIfLoggedIn();
+    super.initState();
+  }
+
+  void _checkIfLoggedIn() async{
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var token = localStorage.getString('token');
+    if(token != null){
+      setState(() {
+        isAuth = true;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Widget child;
+    if (isAuth) {
+      child = Home();
+    } else {
+      child = Login();
+    }
+    return Scaffold(
+      body: child,
+    );
+  }
+}
+
