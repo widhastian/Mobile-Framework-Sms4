@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:project_sms4/page/profile_page.dart';
+import 'package:project_sms4/utils/api.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Home.dart';
 import 'register_page.dart';
@@ -14,12 +18,30 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  // late bool _passwordVisible;
+  // final _formKey = GlobalKey<FormState>();
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _passwordVisible = false;
+  // }
   late bool _passwordVisible;
+  bool _isLoading = false;
   final _formKey = GlobalKey<FormState>();
-  @override
-  void initState() {
-    super.initState();
-    _passwordVisible = false;
+  var email;
+  var password;
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  _showMsg(msg) {
+    final snackBar = SnackBar(
+      content: Text(msg),
+      action: SnackBarAction(
+        label: 'Close',
+        onPressed: () {
+          // Some code to undo the change!
+        },
+      ),
+    );
+    _scaffoldKey.currentState!.showSnackBar(snackBar);
   }
 
   @override
@@ -176,10 +198,11 @@ class _LoginState extends State<Login> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 230, 0, 0),
                   child: ElevatedButton(
                     onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => Home()));
-                      }
+                      this._login();
+                      // if (_formKey.currentState!.validate()) {
+                      //   Navigator.pushReplacement(context,
+                      //       MaterialPageRoute(builder: (context) => Home()));
+                      // }
                     },
                     style: ElevatedButton.styleFrom(
                       primary: fromCssColor('#6AA83F'),
@@ -288,4 +311,30 @@ class _LoginState extends State<Login> {
       ),
     );
   }
+
+  void _login() async {
+    setState(() {
+      _isLoading = true;
+    });
+    var data = {'email': email, 'password': password};
+
+    var res = await Network().authData(data, '/login');
+    var body = json.decode(res.body);
+    if (body['success']) {
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      localStorage.setString('token', json.encode(body['token']));
+      localStorage.setString('user', json.encode(body['user']));
+      Navigator.push(
+        context,
+        new MaterialPageRoute(builder: (context) => Home()),
+      );
+    } else {
+      _showMsg(body['message']);
+    }
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
 }
