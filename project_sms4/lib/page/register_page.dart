@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:from_css_color/from_css_color.dart';
 import 'package:project_sms4/Home.dart';
 import 'package:project_sms4/page/login_page.dart';
 import 'package:project_sms4/page/opening.dart';
+import 'package:project_sms4/utils/api.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -13,7 +17,13 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  bool _isLoading = false;
   late bool _passwordVisible;
+  var kategori;
+  var password;
+  var name;
+  var phone;
+  
   final _formKey = GlobalKey<FormState>();
   @override
   void initState() {
@@ -288,10 +298,11 @@ class _RegisterState extends State<Register> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 340, 0, 0),
                   child: ElevatedButton(
                     onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Home()));
-                      }
+                      this._register();
+                      // if (_formKey.currentState!.validate()) {
+                      //   Navigator.push(context,
+                      //       MaterialPageRoute(builder: (context) => Home()));
+                      // }
                     },
                     style: ElevatedButton.styleFrom(
                       primary: fromCssColor('#6AA83F'),
@@ -364,4 +375,35 @@ class _RegisterState extends State<Register> {
       ),
     );
   }
+
+  void _register()async{
+    setState(() {
+      _isLoading = true;
+    });
+    var data = {
+      'password': password,
+      'kategori': kategori,
+      'phone': phone,
+      'name': name
+    };
+
+    var res = await Network().authData(data, '/register');
+    var body = json.decode(res.body);
+    if(body['success']){
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      localStorage.setString('token', json.encode(body['token']));
+      localStorage.setString('user', json.encode(body['user']));
+      Navigator.push(
+        context,
+        new MaterialPageRoute(
+            builder: (context) => Home()
+        ),
+      );
+    }
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
 }
