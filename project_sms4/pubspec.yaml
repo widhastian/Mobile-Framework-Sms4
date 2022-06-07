@@ -39,6 +39,8 @@ dependencies:
   auth: ^8.0.0
   splashscreen: 
   http: ^0.13.4
+  persistent_bottom_nav_bar: any
+  shared_preferences: ^2.0.15
   # animated_theme_switcher: ^2.0.1-nullsafety.0
   animated_theme_switcher: "^2.0.5"
   easy_debounce: ^2.0.2+1
