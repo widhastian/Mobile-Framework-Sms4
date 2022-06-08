@@ -86,10 +86,10 @@ class _CheckAuthState extends State<CheckAuth> {
     super.initState();
   }
 
-  void _checkIfLoggedIn() async{
+  void _checkIfLoggedIn() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var token = localStorage.getString('token');
-    if(token != null){
+    if (token != null) {
       setState(() {
         isAuth = true;
       });
@@ -109,4 +109,3 @@ class _CheckAuthState extends State<CheckAuth> {
     );
   }
 }
-

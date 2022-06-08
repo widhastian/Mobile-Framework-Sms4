@@ -23,7 +23,7 @@ class _RegisterState extends State<Register> {
   var password;
   var name;
   var phone;
-  
+
   final _formKey = GlobalKey<FormState>();
   @override
   void initState() {
@@ -41,29 +41,10 @@ class _RegisterState extends State<Register> {
             padding: EdgeInsets.all(20.0),
             child: Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Container(
-                    alignment: Alignment.topLeft,
-                    color: Colors.transparent,
-                    child: IconButton(
-                      icon: Icon(Icons.arrow_back_ios_new_rounded),
-                      iconSize: 25,
-                      color: Colors.black,
-                      splashColor: fromCssColor('#6AA83F'),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SplashScreenWidget()));
-                      },
-                    ),
-                  ),
-                ),
                 Align(
-                  alignment: AlignmentDirectional(-0.35, 0),
+                  // alignment: AlignmentDirectional(-0.35, 0),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
                     child: Text(
                       'Selamat Datang di GoFarm!',
                       textAlign: TextAlign.start,
@@ -80,14 +61,14 @@ class _RegisterState extends State<Register> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: new InputDecoration(
-                      hintText: "contoh: widha astiani",
+                      hintText: "contoh: widha astianna",
                       hintStyle: GoogleFonts.getFont(
                         'Poppins',
                         color: Colors.black,
                         fontWeight: FontWeight.normal,
                         fontSize: 12,
                       ),
-                      labelText: "masukkan nama lengkap",
+                      labelText: "Nama Lengkap",
                       labelStyle: GoogleFonts.getFont(
                         'Poppins',
                         color: Colors.black,
@@ -127,14 +108,14 @@ class _RegisterState extends State<Register> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: new InputDecoration(
-                      hintText: "contoh: o85xxxxxxxxx",
+                      hintText: "contoh: widha@gmail.com",
                       hintStyle: GoogleFonts.getFont(
                         'Poppins',
                         color: Colors.black,
                         fontWeight: FontWeight.normal,
                         fontSize: 12,
                       ),
-                      labelText: "masukkan nomor hp",
+                      labelText: "Alamat Email",
                       labelStyle: GoogleFonts.getFont(
                         'Poppins',
                         color: Colors.black,
@@ -158,13 +139,13 @@ class _RegisterState extends State<Register> {
                       filled: true,
                       fillColor: Colors.white,
                       prefixIcon: Icon(
-                        Icons.call,
+                        Icons.email,
                         color: fromCssColor('#6AA83F'),
                       ),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'nomor hp tidak boleh kosong';
+                        return 'Alamat Email tidak boleh kosong';
                       }
                       return null;
                     },
@@ -295,19 +276,19 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 340, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 230, 0, 0),
                   child: ElevatedButton(
                     onPressed: () async {
                       this._register();
-                      // if (_formKey.currentState!.validate()) {
-                      //   Navigator.push(context,
-                      //       MaterialPageRoute(builder: (context) => Home()));
-                      // }
+                      if (_formKey.currentState!.validate()) {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Login()));
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       primary: fromCssColor('#6AA83F'),
                       onPrimary: Colors.white,
-                      minimumSize: Size(200, 50),
+                      minimumSize: Size(450, 60),
                       side: BorderSide(
                         color: Colors.transparent,
                         width: 1,
@@ -339,7 +320,7 @@ class _RegisterState extends State<Register> {
                           'Sudah punya akun?',
                           style: GoogleFonts.getFont(
                             'Poppins',
-                            color: Colors.black45,
+                            color: Colors.black,
                             fontWeight: FontWeight.w500,
                             fontSize: 14,
                           ),
@@ -376,7 +357,7 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  void _register()async{
+  void _register() async {
     setState(() {
       _isLoading = true;
     });
@@ -389,15 +370,13 @@ class _RegisterState extends State<Register> {
 
     var res = await Network().authData(data, '/register');
     var body = json.decode(res.body);
-    if(body['success']){
+    if (body['success']) {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       localStorage.setString('token', json.encode(body['token']));
       localStorage.setString('user', json.encode(body['user']));
       Navigator.push(
         context,
-        new MaterialPageRoute(
-            builder: (context) => Home()
-        ),
+        new MaterialPageRoute(builder: (context) => Home()),
       );
     }
 
@@ -405,5 +384,4 @@ class _RegisterState extends State<Register> {
       _isLoading = false;
     });
   }
-
 }

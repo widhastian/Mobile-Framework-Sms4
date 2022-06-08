@@ -24,219 +24,220 @@ class _ArtikelState extends State<Artikel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[Container(decoration: BoxDecoration(
-          color: Colors.white,
+      key: scaffoldKey,
+      appBar: AppBar(
+        backgroundColor: Color(0xFF6AA83F),
+        automaticallyImplyLeading: false,
+        title: Text(
+          'Artikel',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.getFont(
+            'Poppins',
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            fontSize: 24,
+          ),
         ),
-        child: ListView(
-          padding: EdgeInsetsDirectional.fromSTEB(40, 20, 40, 0), //kiri atas kanan bawah
-          children: <Widget>[
-            Align(
-              alignment: AlignmentDirectional(0, 0),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-                  child: Text(
-                    'Artikel',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.getFont(
-                      'Poppins',
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 24,
+        actions: [],
+        centerTitle: true,
+        elevation: 2,
+      ),
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+            ),
+            child: ListView(
+                padding: EdgeInsetsDirectional.fromSTEB(
+                    40, 10, 40, 0), //kiri atas kanan bawah
+                children: <Widget>[
+                  // PENCARIAN
+                  Align(
+                    child: GestureDetector(
+                      onTap: () => FocusScope.of(context).unfocus(),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(10, 10, 10, 15),
+                            child: TextFormField(
+                              controller: textController,
+                              onChanged: (_) => EasyDebounce.debounce(
+                                'textController',
+                                Duration(milliseconds: 1000),
+                                () => setState(() {}),
+                              ),
+                              autofocus: true,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText: 'Cari',
+                                hintText: 'Cari artikel disini',
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFF6AA83F),
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFF6AA83F),
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                prefixIcon: Icon(
+                                  Icons.search_rounded,
+                                  color: Color(0xFF6AA83F),
+                                  size: 20,
+                                ),
+                                suffixIcon: textController.text.isNotEmpty
+                                    ? InkWell(
+                                        onTap: () => setState(
+                                          () => textController.clear(),
+                                        ),
+                                        child: Icon(
+                                          Icons.clear,
+                                          color: Color(0xFF757575),
+                                          size: 22,
+                                        ),
+                                      )
+                                    : null,
+                              ),
+                              style: GoogleFonts.getFont(
+                                'Poppins',
+                                color: Colors.black,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-              ),
-            ),
-            // PENCARIAN
-            Align(
-              child: GestureDetector(
-                onTap: () => FocusScope.of(context).unfocus(),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 20, 10, 15),
-                      child: TextFormField(
-                        controller: textController,
-                        onChanged: (_) => EasyDebounce.debounce(
-                          'textController',
-                          Duration(milliseconds: 1000),
-                          () => setState(() {}),
-                        ),
-                        autofocus: true,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          labelText: 'Cari',
-                          hintText: 'Cari artikel disini',
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0xFF6AA83F),
-                              width: 1,
+                  Card(
+                    child: Container(
+                      height: 270, //ukuran cardnya
+                      child: Column(children: <Widget>[
+                        Container(
+                          height: 200, //ukuran gambarnya
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(color: Color(0xFF6AA83F)),
+                            borderRadius: BorderRadius.circular(20.0),
+                            image: DecorationImage(
+                              image: AssetImage(
+                                "images/artikel1.jpg",
+                              ),
+                              fit: BoxFit.fill,
                             ),
-                            borderRadius: BorderRadius.circular(10),
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0xFF6AA83F),
-                              width: 1,
+                        ),
+                        Container(
+                          padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 0),
+                          height: 50,
+                          width: 500,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            // Color(0xFF6AA83F)
+                          ),
+                          child: Text(
+                            "Cara Budidaya Tanaman Bawang Merah yang Baik dan Benar",
+                            style: GoogleFonts.getFont(
+                              'Poppins',
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
                             ),
-                            borderRadius: BorderRadius.circular(10),
                           ),
-                          prefixIcon: Icon(
-                            Icons.search_rounded,
-                            color: Color(0xFF6AA83F),
-                            size: 20,
+                        ),
+                      ]),
+                    ),
+                  ),
+                  Card(
+                    child: Container(
+                      height: 270, //ukuran cardnya
+                      child: Column(children: <Widget>[
+                        Container(
+                          height: 200, //ukuran gambarnya
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(color: Color(0xFF6AA83F)),
+                            borderRadius: BorderRadius.circular(20.0),
+                            image: DecorationImage(
+                              image: AssetImage(
+                                "images/artikel2.jpg",
+                              ),
+                              fit: BoxFit.fill,
+                            ),
                           ),
-                          suffixIcon: textController.text.isNotEmpty
-                              ? InkWell(
-                                  onTap: () => setState(
-                                    () => textController.clear(),
-                                  ),
-                                  child: Icon(
-                                    Icons.clear,
-                                    color: Color(0xFF757575),
-                                    size: 22,
-                                  ),
-                                )
-                              : null,
                         ),
-                        style: GoogleFonts.getFont(
-                          'Poppins',
-                          color: Colors.black,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Card(
-              child: Container(
-                height: 270, //ukuran cardnya
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      height: 200, //ukuran gambarnya
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Color(0xFF6AA83F)),
-                        borderRadius: BorderRadius.circular(20.0),
-                        image: DecorationImage(
-                          image: AssetImage(
-                            "images/artikel1.jpg",
+                        Container(
+                          padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 0),
+                          height: 50,
+                          width: 500,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
                           ),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 0),
-                      height: 50,
-                      width: 500,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        // Color(0xFF6AA83F)
-                      ),
-                      child: Text(
-                        "Cara Budidaya Tanaman Bawang Merah yang Baik dan Benar",
-                        style: GoogleFonts.getFont(
-                          'Poppins',
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16,
-                        ),
-                      ),  
-                    ),
-                  ]
-                ),
-              ),
-            ),
-            Card(
-              child: Container( 
-                height: 270, //ukuran cardnya
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      height: 200, //ukuran gambarnya
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Color(0xFF6AA83F)),
-                        borderRadius: BorderRadius.circular(20.0),
-                        image: DecorationImage(
-                          image: AssetImage(
-                            "images/artikel2.jpg",
+                          child: Text(
+                            "Pengendalian Hama Ulat Pada Tanaman Bawang Merah",
+                            style: GoogleFonts.getFont(
+                              'Poppins',
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                            ),
                           ),
-                          fit: BoxFit.fill,
                         ),
-                      ),
+                      ]),
                     ),
-                    Container(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 0),
-                      height: 50,
-                      width: 500,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: Text(
-                        "Pengendalian Hama Ulat Pada Tanaman Bawang Merah",
-                        style: GoogleFonts.getFont(
-                          'Poppins',
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16,
-                        ),
-                      ),  
-                    ),
-                  ]
-                ),
-              ),
-            ),
-            Card(
-              child: Container( 
-                height: 270, //ukuran cardnya
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      height: 200, //ukuran gambarnya
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Color(0xFF6AA83F)),
-                        borderRadius: BorderRadius.circular(20.0),
-                        image: DecorationImage(
-                          image: AssetImage(
-                            "images/artikel3.jpg",
+                  ),
+                  Card(
+                    child: Container(
+                      height: 270, //ukuran cardnya
+                      child: Column(children: <Widget>[
+                        Container(
+                          height: 200, //ukuran gambarnya
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(color: Color(0xFF6AA83F)),
+                            borderRadius: BorderRadius.circular(20.0),
+                            image: DecorationImage(
+                              image: AssetImage(
+                                "images/artikel3.jpg",
+                              ),
+                              fit: BoxFit.fill,
+                            ),
                           ),
-                          fit: BoxFit.fill,
                         ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 0),
-                      height: 50,
-                      width: 500,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: Text(
-                        "Jenis Tanah yang Cocok Untuk Menanam Bawang Merah",
-                        style: GoogleFonts.getFont(
-                          'Poppins',
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16,
+                        Container(
+                          padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 0),
+                          height: 50,
+                          width: 500,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                          ),
+                          child: Text(
+                            "Jenis Tanah yang Cocok Untuk Menanam Bawang Merah",
+                            style: GoogleFonts.getFont(
+                              'Poppins',
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                            ),
+                          ),
                         ),
-                      ),  
+                      ]),
                     ),
-                  ]
-                ),
-              ),
-            ),
-          ]
-        ),
-      ),],
-    ),
+                  ),
+                ]),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -14,23 +14,25 @@ import 'package:from_css_color/from_css_color.dart';
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
   @override
-  State<Login> createState() => _LoginState();
+  _LoginState createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
   // late bool _passwordVisible;
   // final _formKey = GlobalKey<FormState>();
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _passwordVisible = false;
-  // }
+
   late bool _passwordVisible;
   bool _isLoading = false;
   final _formKey = GlobalKey<FormState>();
   var email;
   var password;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  @override
+  void initState() {
+    super.initState();
+    _passwordVisible = false;
+  }
+
   _showMsg(msg) {
     final snackBar = SnackBar(
       content: Text(msg),
@@ -55,7 +57,7 @@ class _LoginState extends State<Login> {
             child: Column(
               children: [
                 Align(
-                  alignment: AlignmentDirectional(-0.35, 0),
+                  // alignment: AlignmentDirectional(-0.35, 0),
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
                     child: Text(
@@ -180,18 +182,18 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Container(
+                  padding: EdgeInsetsDirectional.fromSTEB(1, 0, 0, 0),
+                  child: TextButton(
                     child: Text(
-                      'Lupa kata sandi?',
-                      textAlign: TextAlign.right,
+                      'Lupa password?',
                       style: GoogleFonts.getFont(
                         'Poppins',
                         color: fromCssColor('#6AA83F'),
                         fontWeight: FontWeight.w600,
-                        fontSize: 13,
+                        fontSize: 14,
                       ),
                     ),
+                    onPressed: () {},
                   ),
                 ),
                 Padding(
@@ -199,10 +201,10 @@ class _LoginState extends State<Login> {
                   child: ElevatedButton(
                     onPressed: () async {
                       this._login();
-                      // if (_formKey.currentState!.validate()) {
-                      //   Navigator.pushReplacement(context,
-                      //       MaterialPageRoute(builder: (context) => Home()));
-                      // }
+                      if (_formKey.currentState!.validate()) {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => Home()));
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       primary: fromCssColor('#6AA83F'),
@@ -253,7 +255,7 @@ class _LoginState extends State<Login> {
                             style: GoogleFonts.getFont(
                               'Poppins',
                               color: fromCssColor('#6AA83F'),
-                              fontWeight: FontWeight.w700,
+                              fontWeight: FontWeight.w600,
                               fontSize: 14,
                             ),
                           ),
@@ -336,5 +338,4 @@ class _LoginState extends State<Login> {
       _isLoading = false;
     });
   }
-
 }
