@@ -3,6 +3,7 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:from_css_color/from_css_color.dart';
+import 'package:project_sms4/page/dashboard_page.dart';
 import 'package:project_sms4/page/login_page.dart';
 import 'package:project_sms4/themes.dart';
 import 'package:project_sms4/utils/user_preferences.dart';
@@ -34,8 +35,9 @@ class MyApp extends StatelessWidget {
           // theme: ThemeProvider(),
           title: title,
           // home: Home(),
+          home: Dashboard(),
           // home: splashscreen(),
-          home: CheckAuth(),
+          // home: CheckAuth(),
           // home: Login(),
         ),
       ),
