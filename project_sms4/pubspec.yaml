@@ -44,6 +44,7 @@ dependencies:
   # animated_theme_switcher: ^2.0.1-nullsafety.0
   animated_theme_switcher: "^2.0.5"
   easy_debounce: ^2.0.2+1
+  extended_image: ^4.0.0
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +79,7 @@ flutter:
   - assets/images/petani.png
   - assets/images/popt1.jpg
   - assets/images/popt2.jpg
+  - assets/images/My_project_1.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

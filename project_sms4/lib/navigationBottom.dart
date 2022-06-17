@@ -4,18 +4,18 @@ import 'package:from_css_color/from_css_color.dart';
 import 'package:project_sms4/page/artikel_page.dart';
 import 'package:project_sms4/page/dashboard_page.dart';
 import 'package:project_sms4/page/profile_page.dart';
-import 'package:project_sms4/page/chat_page.dart';
+import 'package:project_sms4/page/profile_page2.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class navBottom extends StatefulWidget {
+  const navBottom({Key? key}) : super(key: key);
 
   @override
-  _HomeState createState() => _HomeState();
+  _navBottomState createState() => _navBottomState();
 }
 
-class _HomeState extends State<Home> {
+class _navBottomState extends State<navBottom> {
   int currentTab = 0;
-  final List<Widget> screens = [Dashboard(), Artikel(), Chat(), ProfilePage()];
+  final List<Widget> screens = [Dashboard(), Artikel(), Profile()];
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class _HomeState extends State<Home> {
         unselectedItemColor: Colors.black,
         showUnselectedLabels: false,
         selectedFontSize: 12,
-        unselectedFontSize: 20,
+        unselectedFontSize: 12,
         currentIndex: currentTab,
         onTap: (index) => setState(() => currentTab = index),
         items: [
@@ -42,10 +42,6 @@ class _HomeState extends State<Home> {
           BottomNavigationBarItem(
             icon: Icon(Icons.article_rounded),
             label: 'Artikel',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat_rounded),
-            label: 'Pesan',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:from_css_color/from_css_color.dart';
-import 'package:project_sms4/Home.dart';
+import 'package:project_sms4/navigationBottom.dart';
 import 'package:project_sms4/page/login_page.dart';
 import 'package:project_sms4/page/opening.dart';
 import 'package:project_sms4/utils/api.dart';
@@ -376,7 +376,7 @@ class _RegisterState extends State<Register> {
       localStorage.setString('user', json.encode(body['user']));
       Navigator.push(
         context,
-        new MaterialPageRoute(builder: (context) => Home()),
+        new MaterialPageRoute(builder: (context) => navBottom()),
       );
     }
 

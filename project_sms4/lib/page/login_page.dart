@@ -1,10 +1,10 @@
 import 'dart:convert';
 
+import 'package:project_sms4/navigationBottom.dart';
 import 'package:project_sms4/page/profile_page.dart';
 import 'package:project_sms4/utils/api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../Home.dart';
 import 'register_page.dart';
 import 'opening.dart';
 import 'package:flutter/material.dart';
@@ -202,8 +202,10 @@ class _LoginState extends State<Login> {
                     onPressed: () async {
                       this._login();
                       if (_formKey.currentState!.validate()) {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => Home()));
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => navBottom()));
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -328,7 +330,7 @@ class _LoginState extends State<Login> {
       localStorage.setString('user', json.encode(body['user']));
       Navigator.push(
         context,
-        new MaterialPageRoute(builder: (context) => Home()),
+        new MaterialPageRoute(builder: (context) => navBottom()),
       );
     } else {
       _showMsg(body['message']);
