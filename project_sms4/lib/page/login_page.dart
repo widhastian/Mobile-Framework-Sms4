@@ -24,9 +24,9 @@ class _LoginState extends State<Login> {
   late bool _passwordVisible;
   bool _isLoading = false;
   final _formKey = GlobalKey<FormState>();
-  var email;
-  var password;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _emailController = TextEditingController();
+  final _passController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -75,6 +75,7 @@ class _LoginState extends State<Login> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+                    controller: _emailController,
                     decoration: new InputDecoration(
                       hintText: "contoh: widha@gmail.com",
                       hintStyle: GoogleFonts.getFont(
@@ -122,6 +123,7 @@ class _LoginState extends State<Login> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+                    controller: _passController,
                     obscureText: !_passwordVisible,
                     decoration: new InputDecoration(
                       suffixIcon: IconButton(
@@ -200,12 +202,12 @@ class _LoginState extends State<Login> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 230, 0, 0),
                   child: ElevatedButton(
                     onPressed: () async {
-                      this._login();
                       if (_formKey.currentState!.validate()) {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => navBottom()));
+                        // Navigator.pushReplacement(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => navBottom()));
+                        _login();
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -285,7 +287,7 @@ class _LoginState extends State<Login> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                   child: ElevatedButton.icon(
                     onPressed: () {},
-                    icon: Image.asset('icons/icon_google.png'),
+                    icon: Image.asset('assets/icons/icon_google.png'),
                     label: Text("Sign In with Google"),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.white,
@@ -320,24 +322,29 @@ class _LoginState extends State<Login> {
     setState(() {
       _isLoading = true;
     });
-    var data = {'email': email, 'password': password};
+    var data = {
+      'email': _emailController.text,
+      'password': _passController.text
+    };
 
     var res = await Network().authData(data, '/login');
     var body = json.decode(res.body);
-    if (body['success']) {
+    print(body);
+    if (body['email'] == _emailController.text) {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
-      localStorage.setString('token', json.encode(body['token']));
-      localStorage.setString('user', json.encode(body['user']));
-      Navigator.push(
+      setState(() {
+        localStorage.setString('token', json.encode(body['token']));
+        localStorage.setString('user', json.encode(body['user']));
+        localStorage.setBool("login", true);
+      });
+      Navigator.pushReplacement(
         context,
         new MaterialPageRoute(builder: (context) => navBottom()),
       );
     } else {
-      _showMsg(body['message']);
+      _showMsg(body['message'].toString());
     }
 
-    setState(() {
-      _isLoading = false;
-    });
+    _isLoading = false;
   }
 }

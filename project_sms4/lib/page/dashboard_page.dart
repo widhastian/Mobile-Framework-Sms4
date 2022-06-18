@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_sms4/page/login_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+  // const Dashboard({Key? key}) : super(key: key);
 
   @override
   _DashboardState createState() => _DashboardState();
@@ -10,6 +12,31 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  _cekLogin() async {
+    // String idUser;
+    bool isLogin;
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    isLogin = pref.getBool("login") ?? false;
+    // print(isLogin);
+    // idUser = pref.getString("id_user") ?? "";
+    setState(() {
+      if (isLogin == false) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) {
+            return const Login();
+          }),
+        );
+      } else {
+        Navigator.of(context);
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _cekLogin();
+  }
 
   @override
   Widget build(BuildContext context) {

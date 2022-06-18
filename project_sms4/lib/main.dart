@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           // theme: ThemeProvider(),
           title: title,
-          home: navBottom(),
+          home: const navBottom(),
           // home: Dashboard(),
           // home: splashscreen(),
           // home: CheckAuth(),

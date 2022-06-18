@@ -3,9 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Network {
-  final String _url = 'http://localhost:8000/api/register';
-  //masih bingung link yang dipakai yang mana..
-  //link file api pada laravel
+  final String _url = 'https://ws-tif.com/gofarm/public/api';
   //if you are using android studio emulator, change localhost to 10.0.2.2
   var token;
 
